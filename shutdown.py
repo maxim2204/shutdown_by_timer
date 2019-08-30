@@ -1,3 +1,4 @@
+import os
 import sys
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QSpinBox
 from PyQt5.QtCore import QCoreApplication
@@ -27,9 +28,9 @@ class Example(QWidget):
         self.setGeometry(150, 150, 250, 150)
 
     def shutdown(self):
-        import os
         myCmd = 'shutdown /s /t {}'.format(self.spin.value())
         os.system(myCmd)
+        self.close()
 
 
 if __name__ == '__main__':
