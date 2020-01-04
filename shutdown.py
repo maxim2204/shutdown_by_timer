@@ -1,8 +1,10 @@
 import os
 import sys
+import time
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication, QVBoxLayout, QSpinBox
 from PyQt5.QtCore import QCoreApplication
 import smtplib
+from Mymail import Go
 
 class Example(QWidget):
 
@@ -28,12 +30,10 @@ class Example(QWidget):
         self.setGeometry(150, 150, 250, 150)
 
     def shutdown(self):
-        myCmd = 'shutdown /s /t {}'.format(self.spin.value())
+        time.sleep(self.spin.value())
+        Go()
+        myCmd = 'shutdown /s /t 0'
         os.system(myCmd)
-        smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
-        smtpObj.starttls()
-        smtpObj.login('From', 'Pass')
-        smtpObj.sendmail("From", "To", "the computer shut down")
         self.close()
 
 
